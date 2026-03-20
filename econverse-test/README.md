@@ -1,31 +1,76 @@
-# Teste Econverse: Vaga Desenvolvedor Front-End
+# econverse-test
 
-### Vem ser #Econverse!
+Aplicação desenvolvida como teste técnico para a vaga de Desenvolvedor Front-End.  
+O projeto consiste na construção de uma interface de e-commerce com foco em componentização, responsividade e organização de código.
 
-Segue abaixo as instruções para a execução do teste.
+---
 
-## Instruções
-- Faça um fork desse projeto para a sua conta pessoal do GitHub.
-- Desenvolva a página conforme as **Especificações Técnicas** 
-- Crie um README com as instruções para compilar, testar e rodar o projeto.
-- O link do repositório deverá ser enviado para o e-mail julia.gardiano@econverse.com.br com o título **Teste Vaga FrontEnd**
+## Sobre o Projeto
 
-## Especificações Técnicas
-- Desenvolver a pagina em React e TypeScript conforme o [layout](https://www.figma.com/file/rWnzPeoxgynuNPsJjV0VmV/Teste-Front-End-Jr?node-id=0%3A1). Para conseguir pegar os elementos do Figma, basta copiar o layout para sua conta que terá acesso de edição.
-- Montar a [vitrine](https://app.econverse.com.br/teste-front-end/junior/tecnologia/layout/vitrine-produtos.png) de produtos consumindo as informações dos produtos em json atraves desse [Link](https://app.econverse.com.br/teste-front-end/junior/tecnologia/lista-produtos/produtos.json).
-- Desenvolver a interação ao clicar em um produto conforme layout. A interação consiste em abrir um modal com as principais informações do produto presente no arquivo [JSON](https://app.econverse.com.br/teste-front-end/junior/tecnologia/lista-produtos/produtos.json) conforme o produto que clicar.
-- Utilizar Pré-processador Sass, Less ou Stylus.
-- Respeitar o Layout pixel a pixel, tamanho das fontes, cores e botões.
-- Não Utilizar bibliotecas UI como Bootstrap, Foundation, ou afins.
+A aplicação simula a exibição de produtos em um e-commerce, permitindo que o usuário visualize detalhes por meio de um modal interativo, com controle de quantidade e atualização dinâmica de valores.
 
-## Pontos Extras
-- Utilizar Boas práticas de SEO
-- Uso de HTML semântico
+A solução foi pensada para ser simples, escalável e de fácil manutenção, seguindo boas práticas do ecossistema React.
 
-## O que avaliaremos em seu teste
-- Organização do projeto
-- Lógica do código
-- Componentização
-- Alcance dos objetivos propostos
+---
 
-**Boa sorte! ;)**
+## Tecnologias Utilizadas
+
+- React
+- Vite
+- TypeScript
+- Sass
+
+---
+
+## Principais Funcionalidades
+
+- Exibição de produtos em formato de carrossel
+- Layout responsivo (desktop, tablet e mobile)
+- Modal de detalhes do produto
+- Controle de quantidade de itens
+- Cálculo automático do valor total
+- Formatação de valores no padrão monetário brasileiro
+- Organização de estilos com Sass
+
+---
+
+## Estrutura do Projeto
+
+src/
+├── assets/
+├── components/
+├── pages/
+├── styles/
+├── types/
+└── App.tsx
+
+
+**Descrição dos diretórios:**
+
+- **assets**: arquivos estáticos como imagens e ícones  
+- **components**: componentes reutilizáveis da interface  
+- **pages**: estrutura de páginas da aplicação  
+- **styles**: arquivos globais e configurações Sass  
+- **types**: tipagens TypeScript  
+- **App.tsx**: componente raiz  
+
+---
+
+## Como Executar o Projeto
+
+1. **Clonar o repositório**
+```bash
+git clone https://github.com/Guilherme3146/teste-front-end.git
+cd econverse-test
+```
+
+2. **Instalar dependências**
+```bash
+npm install
+```
+
+3. **Rodar em modo de desenvolvimento**
+```bash
+npm run dev
+```
+---
