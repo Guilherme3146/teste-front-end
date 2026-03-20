@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import type { Product } from "../../types/product";
-import styles from './ProductCarrousel.module.scss';
+import styles from "./ProductCarrousel.module.scss";
 
-import { X } from 'lucide-react';
-import Counter from '../Counter/Counter';
+import { X } from "lucide-react";
+import Counter from "../Counter/Counter";
 
 export default function ProductCarousel() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -24,33 +24,41 @@ export default function ProductCarousel() {
 
   /* ===== RESPONSIVO ===== */
   const getProductsPerPage = () => {
-    if (window.innerWidth <= 480) return 1;
-    if (window.innerWidth <= 768) return 2;
+    if (typeof window !== "undefined") {
+      if (window.innerWidth <= 480) return 1;
+      if (window.innerWidth <= 768) return 2;
+    }
     return 4;
   };
 
   useEffect(() => {
-    setProductsPerPage(getProductsPerPage());
+    const update = () => setProductsPerPage(getProductsPerPage());
 
-    const handleResize = () => {
-      setProductsPerPage(getProductsPerPage());
-    };
+    update();
+    window.addEventListener("resize", update);
 
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", update);
   }, []);
 
-  /* ===== FETCH ===== */
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await fetch("/api/products");
+        const res = await fetch(
+          "https://corsproxy.io/?https://app.econverse.com.br/teste-front-end/junior/tecnologia/lista-produtos/produtos.json"
+        );
 
-        if (!res.ok) throw new Error();
+        console.log("STATUS:", res.status);
+
+        if (!res.ok) throw new Error("Erro na API");
 
         const data = await res.json();
-        setProducts(Array.isArray(data.products) ? data.products : []);
-      } catch {
+
+        console.log("DATA:", data);
+
+        // 🔥 CORRETO
+        setProducts(data.products);
+      } catch (err) {
+        console.error("ERRO:", err);
         setError("Não foi possível carregar os produtos.");
       } finally {
         setLoading(false);
@@ -62,6 +70,7 @@ export default function ProductCarousel() {
 
   /* ===== PAGINAÇÃO ===== */
   const startIndex = currentPage * productsPerPage;
+
   const visibleProducts = products.slice(
     startIndex,
     startIndex + productsPerPage
@@ -85,6 +94,7 @@ export default function ProductCarousel() {
     setQuantity(1);
   };
 
+  /* ===== STATES ===== */
   if (loading) return <p>Carregando produtos...</p>;
   if (error) return <p>{error}</p>;
   if (!products.length) return <p>Nenhum produto encontrado.</p>;
@@ -92,11 +102,16 @@ export default function ProductCarousel() {
   return (
     <div className={styles.carouselWrapper}>
 
-      <button className={styles.prevBtn} onClick={prevPage}>‹</button>
+      <button className={styles.prevBtn} onClick={prevPage}>
+        ‹
+      </button>
 
       <div className={styles.productCarousel}>
-        {visibleProducts.map((product) => (
-          <div key={`${product.productName}-${product.price}`} className={styles.productCard}>
+        {visibleProducts.map((product, index) => (
+          <div
+            key={index}
+            className={styles.productCard}
+          >
             <img
               src={product.photo}
               alt={product.productName}
@@ -133,14 +148,13 @@ export default function ProductCarousel() {
         ))}
       </div>
 
-      <button className={styles.nextBtn} onClick={nextPage}>›</button>
+      <button className={styles.nextBtn} onClick={nextPage}>
+        ›
+      </button>
 
       {/* ===== MODAL ===== */}
       {modalProduct && (
-        <div
-          className={styles.modalOverlay}
-          onClick={closeModal}
-        >
+        <div className={styles.modalOverlay} onClick={closeModal}>
           <div
             className={styles.modalContent}
             onClick={(e) => e.stopPropagation()}
@@ -159,14 +173,16 @@ export default function ProductCarousel() {
               </strong>
 
               <p>
-                Many desktop publishing packages and web page editors now many desktop publishing
+                Many desktop publishing packages and web page editors now
               </p>
 
-              <a href="#" className={styles.showMore}>
+              <button
+                className={styles.showMore}
+                onClick={() => console.log("Ver mais")}
+              >
                 Veja mais detalhes do produto &gt;
-              </a>
+              </button>
 
-              {/* BOTÃO FECHAR COM LUCIDE */}
               <X
                 className={styles.closeButton}
                 size={24}
@@ -175,9 +191,7 @@ export default function ProductCarousel() {
 
               <div className={styles.cart}>
                 <Counter onChange={setQuantity} />
-                <button className={styles.btn}>
-                  Comprar
-                </button>
+                <button className={styles.btn}>Comprar</button>
               </div>
             </div>
           </div>
