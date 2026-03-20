@@ -4,3 +4,27 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+@mixin btn($bg-color, $text-color) {
+  display: inline-block;
+  padding: 0.75rem 3rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: $text-color;
+  background-color: $bg-color;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  width: fit-content;
+  text-transform: uppercase;
+
+  &:hover {
+    background-color: darken($bg-color, 10%);
+  }
+
+  &:active {
+    background-color: darken($bg-color, 15%);
+  }
+}

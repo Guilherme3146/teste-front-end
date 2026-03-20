@@ -19,7 +19,6 @@ export function Header() {
     <header className={styles.header}>
       <div className={styles.headerContainer}>
 
-        {/* TOP HEADER */}
         <div className={styles.topHeader}>
           <div className={styles.perk}>
             <ShieldCheck size={18} />
@@ -37,7 +36,6 @@ export function Header() {
           </div>
         </div>
 
-        {/* MIDDLE HEADER */}
         <div className={styles.middleHeader}>
           
           {/* LOGO */}
@@ -45,29 +43,26 @@ export function Header() {
             <img src={logo} alt="Econverse" />
           </div>
 
-          {/* SEARCH */}
           <div className={styles.searchWrapper}>
             <input
               type="text"
               placeholder="O que você está procurando?"
             />
             <button type="button" aria-label="Buscar">
-              <Search size={18} />
+              <Search size={28} />
             </button>
           </div>
 
-          {/* ACTIONS */}
           <nav className={styles.actions}>
             <ul>
-              <li><Package size={20} /></li>
-              <li><Heart size={20} /></li>
-              <li><UserCircle size={20} /></li>
-              <li><ShoppingCart size={20} /></li>
+              <li><Package size={32} /></li>
+              <li><Heart size={32} /></li>
+              <li><UserCircle size={32} /></li>
+              <li><ShoppingCart size={32} /></li>
             </ul>
           </nav>
         </div>
 
-        {/* NAVIGATION */}
         <nav className={styles.navigation}>
           <ul>
             <li><a href="#">Todas Categorias</a></li>
