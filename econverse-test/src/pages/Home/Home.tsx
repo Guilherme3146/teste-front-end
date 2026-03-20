@@ -1,110 +1,129 @@
 import Banner from '../../assets/images/banner.webp';
 import styles from './Home.module.scss';
-import technology from '../../assets/icons/technology.svg'
-import superMarket from '../../assets/icons/superMarket.svg'
-import drinks from '../../assets/icons/whiskey.svg'
-import tools from '../../assets/icons/tools.svg'
-import health from '../../assets/icons/health.svg'
-import sports from '../../assets/icons/run.svg'
-import fashion from '../../assets/icons/fashion.svg'
+
+import technology from '../../assets/icons/technology.svg';
+import superMarket from '../../assets/icons/superMarket.svg';
+import drinks from '../../assets/icons/whiskey.svg';
+import tools from '../../assets/icons/tools.svg';
+import health from '../../assets/icons/health.svg';
+import sports from '../../assets/icons/run.svg';
+import fashion from '../../assets/icons/fashion.svg';
 import logo from '../../assets/images/logo.png';
 
 import ProductCarousel from '../../components/ProductsCarrousel/ProductsCarrousel';
-import Partners from '../../components/Partners/Partners'
-import Newsletter from '../../components/Newsletter/Newsletter'
+import Partners from '../../components/Partners/Partners';
+import Newsletter from '../../components/Newsletter/Newsletter';
+
+import type { CategoryItemProps } from '../../types/category';
+
+const categories = [
+  { img: technology, name: 'Tecnologia' },
+  { img: superMarket, name: 'Super Mercado' },
+  { img: drinks, name: 'Bebidas' },
+  { img: tools, name: 'Ferramentas' },
+  { img: health, name: 'Saúde' },
+  { img: sports, name: 'Esportes e Fitness' },
+  { img: fashion, name: 'Moda' },
+];
+
+const productLinks = [
+  'Celular',
+  'Acessórios',
+  'Tablets',
+  'Notebooks',
+  'TVs',
+  'Ver todos',
+];
+
+const brands = [logo, logo, logo, logo, logo];
+
+function CategoryItem({ img, name }: CategoryItemProps) {
+  return (
+    <div className={styles.categoryItem}>
+      <img
+        src={img}
+        alt={name}
+        className={styles.categoriesImg}
+      />
+      <h3>{name}</h3>
+    </div>
+  );
+}
+
+function SectionProducts({ showNav = false }) {
+  return (
+    <section className={styles.relatedProducts}>
+      <h2 className={styles.relatedTitle}>Produtos relacionados</h2>
+
+      {showNav && (
+        <nav>
+          <ul>
+            {productLinks.map((item, index) => (
+              <li key={index}>
+                <button type="button">{item}</button>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
+
+      <ProductCarousel />
+    </section>
+  );
+}
 
 export default function Home() {
-    return (
-         <>
-        <main>
-            <section className={styles.banner}>
-                <div className={styles.bannerContainer}>
-                    <h1>Venha conhecer nossas <span>promoções</span></h1>
-                    <h2><span>50% Off</span> nos produtos</h2>
-                    <a href="#" className={styles.btn}>Ver Produto</a>
-                </div>
-                <img src={Banner} alt="Banner Econverse" title="Banner Econverse" className={styles.bannerImage} />
-            </section>
+  return (
+    <main>
 
-            <section className={styles.categories}>
-                <div>
-                    <img className={styles.categoriesImg} src={technology} alt="Tecnologia" title="Tecnologia" />
-                    <h3>Tecnologia</h3>
-                </div>
-                <div>
-                    <img className={styles.categoriesImg} src={superMarket} alt="Super Mercado" title="Super Mercado" />
-                    <h3>Super Mercado</h3>
-                </div>
-                <div>
-                    <img className={styles.categoriesImg} src={drinks} alt="Bebidas" title="Bebidas" />
-                    <h3>Bebidas</h3>
-                </div>
-                <div>
-                    <img className={styles.categoriesImg} src={tools} alt="Ferramentas" title="Ferramentas" />
-                    <h3>Ferramentas</h3>
-                </div>
-                <div>
-                    <img className={styles.categoriesImg} src={health} alt="Saúde" title="Saúde" />
-                    <h3>Saúde</h3>
-                </div>
-                <div>
-                    <img className={styles.categoriesImg} src={sports} alt="Esportes" title="Esportes e Fitness" />
-                    <h3>Esportes e Fitness</h3>
-                </div>
-                <div>
-                    <img className={styles.categoriesImg} src={fashion} alt="Moda" title="Moda" />
-                    <h3>Moda</h3>
-                </div>
-            </section>
+      {/* Banner */}
+      <section className={styles.banner}>
+        <div className={styles.bannerContainer}>
+          <h1>
+            Venha conhecer nossas <span>promoções</span>
+          </h1>
+          <h2>
+            <span>50% Off</span> nos produtos
+          </h2>
+          <button className={styles.btn}>Ver Produto</button>
+        </div>
 
-            <section className={styles.relatedProducts}>
-                <h2 className={styles.relatedTitle}>Produtos relacionados</h2>
-                <nav>
-                    <ul>
-                        <li><a href="#">Celular</a></li>
-                        <li><a href="#">Acessórios</a></li>
-                        <li><a href="#">Tablets</a></li>
-                        <li><a href="#">Notebooks</a></li>
-                        <li><a href="#">TVs</a></li>
-                        <li><a href="#">Ver todos</a></li>
-                    </ul>
-                </nav>
-                <ProductCarousel />
-            </section>
-            <Partners />
-            <section className={styles.relatedProducts}>
-                <h2 className={styles.relatedTitle}>Produtos relacionados</h2>
-                <span>Ver todos</span>
-                <ProductCarousel />
-            </section>
-            <Partners />
-            <section className={styles.brands}>
-                <h2>Navegue por marcas</h2>
-                <div className={styles.brandsContainer}>
-                    <div className={styles.brand}>
-                        <img src={logo} alt="Econverse" title="Econverse" loading="lazy" />
-                    </div>
-                       <div className={styles.brand}>
-                        <img src={logo} alt="Econverse" title="Econverse" loading="lazy" />
-                    </div>
-                       <div className={styles.brand}>
-                        <img src={logo} alt="Econverse" title="Econverse" loading="lazy" />
-                    </div>
-                       <div className={styles.brand}>
-                        <img src={logo} alt="Econverse" title="Econverse" loading="lazy" />
-                    </div>
-                       <div className={styles.brand}>
-                        <img src={logo} alt="Econverse" title="Econverse" loading="lazy" />
-                    </div>
-                </div>
-            </section>
-             <section className={styles.relatedProducts}>
-                <h2 className={styles.relatedTitle}>Produtos relacionados</h2>
-                <span>Ver todos</span>
-                <ProductCarousel />
-            </section>
-            <Newsletter />
-        </main>
-        </>
-    );
+        <img
+          src={Banner}
+          alt="Banner Econverse"
+          className={styles.bannerImage}
+        />
+      </section>
+
+      {/* Categorias */}
+      <section className={styles.categories}>
+        {categories.map((category, index) => (
+          <CategoryItem key={index} {...category} />
+        ))}
+      </section>
+
+      {/* Produtos */}
+      <SectionProducts showNav />
+      <Partners />
+      <SectionProducts />
+      <Partners />
+
+      {/* Marcas */}
+      <section className={styles.brands}>
+        <h2>Navegue por marcas</h2>
+
+        <div className={styles.brandsContainer}>
+          {brands.map((brand, index) => (
+            <div key={index} className={styles.brand}>
+              <img src={brand} alt="Marca" loading="lazy" />
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <SectionProducts />
+
+      <Newsletter />
+    </main>
+  );
 }
