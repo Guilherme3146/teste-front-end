@@ -60,7 +60,6 @@
     }
 }
 
-/* Modal */
 .modalOverlay {
     position: fixed;
     top: 0;
@@ -131,7 +130,7 @@
         }
 
         @media screen and (max-width: $breakpoint-mobile) {
-            .productImg{
+            .productImg {
                 display: none;
             }
         }
@@ -140,69 +139,75 @@
 
 
 .carouselWrapper {
-  position: relative;
-  width: 100%;
-  padding: 0 1rem;
+    position: relative;
+    width: 100%;
+    padding: 0 1rem;
 
-  /* Área do carrossel */
-  .productCarousel {
-    display: flex;
-    gap: 1rem;
-    overflow: hidden;
-    scroll-behavior: smooth;
-  }
+    .productCarousel {
+        display: flex;
+        gap: 1.5rem; 
+        overflow-x: hidden;
+        overflow-y: visible; 
+        padding: 10px 5px; 
+    }
 
-  /* Card */
-  .productCard {
-    min-width: calc(25% - 1rem);
-  }
-
-  /* Tablets */
-  @media (max-width: $breakpoint-ipad) {
     .productCard {
-      min-width: calc(50% - 1rem);
+        min-width: calc(25% - 1rem);
     }
-  }
 
-  /* Mobile */
-  @media (max-width: $breakpoint-mobile) {
-    .productCard {
-      min-width: 100%;
+    @media (max-width: $breakpoint-ipad) {
+        .productCard {
+            min-width: calc(50% - 1rem);
+        }
     }
-  }
 
-  /* Botões */
-  .prevBtn,
-  .nextBtn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 1.5rem;
-    background: #fff;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
-    color: $black;
-    border: none;
-    border-radius: 50%;
-    width: 36px;
-    height: 36px;
-    cursor: pointer;
-    z-index: 10;
-    transition: 0.2s;
-  }
-
-  .prevBtn {
-    left: 0;
-
-    @media (min-width: $breakpoint-desktop) {
-      left: -2rem;
+    @media (max-width: $breakpoint-mobile) {
+        .productCard {
+            min-width: 100%;
+        }
     }
-  }
 
-  .nextBtn {
-    right: 0;
+    .prevBtn,
+    .nextBtn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.5rem;
+        background: #fff;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+        color: $black;
+        border: none;
+        border-radius: 50%;
+        width: 36px;
+        height: 36px;
+        cursor: pointer;
+        z-index: 10;
+        transition: 0.2s;
 
-    @media (min-width: $breakpoint-desktop) {
-      right: -2rem;
+        &:hover:not(:disabled) {
+            transform: scale(1.1);
+            background: #f5f5f5;
+        }
+
+        &:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
     }
-  }
+
+    .prevBtn {
+        left: 0;
+
+        @media (min-width: $breakpoint-desktop) {
+            left: -2rem;
+        }
+    }
+
+    .nextBtn {
+        right: 0;
+
+        @media (min-width: $breakpoint-desktop) {
+            right: -2rem;
+        }
+    }
 }

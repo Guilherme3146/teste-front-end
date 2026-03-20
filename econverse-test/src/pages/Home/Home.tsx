@@ -60,7 +60,7 @@ function SectionProducts({ showNav = false }) {
           <ul>
             {productLinks.map((item, index) => (
               <li key={index}>
-                <button type="button">{item}</button>
+                {item}
               </li>
             ))}
           </ul>
@@ -76,7 +76,6 @@ export default function Home() {
   return (
     <main>
 
-      {/* Banner */}
       <section className={styles.banner}>
         <div className={styles.bannerContainer}>
           <h1>
@@ -102,7 +101,6 @@ export default function Home() {
         ))}
       </section>
 
-      {/* Produtos */}
       <SectionProducts showNav />
       <Partners />
       <SectionProducts />

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import type { Product } from "../../types/product";
 import styles from "./ProductCarrousel.module.scss";
 
-import { X } from "lucide-react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import Counter from "../Counter/Counter";
 
 export default function ProductCarousel() {
@@ -15,14 +15,12 @@ export default function ProductCarousel() {
   const [currentPage, setCurrentPage] = useState(0);
   const [productsPerPage, setProductsPerPage] = useState(4);
 
-  /* ===== FORMATADOR ===== */
   const formatPrice = (value: number) =>
     value.toLocaleString("pt-BR", {
       style: "currency",
       currency: "BRL",
     });
 
-  /* ===== RESPONSIVO ===== */
   const getProductsPerPage = () => {
     if (typeof window !== "undefined") {
       if (window.innerWidth <= 480) return 1;
@@ -55,7 +53,6 @@ export default function ProductCarousel() {
 
         console.log("DATA:", data);
 
-        // 🔥 CORRETO
         setProducts(data.products);
       } catch (err) {
         console.error("ERRO:", err);
@@ -68,7 +65,6 @@ export default function ProductCarousel() {
     fetchProducts();
   }, []);
 
-  /* ===== PAGINAÇÃO ===== */
   const startIndex = currentPage * productsPerPage;
 
   const visibleProducts = products.slice(
@@ -88,13 +84,11 @@ export default function ProductCarousel() {
     }
   };
 
-  /* ===== MODAL ===== */
   const closeModal = () => {
     setModalProduct(null);
     setQuantity(1);
   };
 
-  /* ===== STATES ===== */
   if (loading) return <p>Carregando produtos...</p>;
   if (error) return <p>{error}</p>;
   if (!products.length) return <p>Nenhum produto encontrado.</p>;
@@ -102,8 +96,13 @@ export default function ProductCarousel() {
   return (
     <div className={styles.carouselWrapper}>
 
-      <button className={styles.prevBtn} onClick={prevPage}>
-        ‹
+      <button
+        className={styles.prevBtn}
+        onClick={prevPage}
+        disabled={currentPage === 0}
+        aria-label="Produtos anteriores"
+      >
+        <ChevronLeft size={24} strokeWidth={2.5} />
       </button>
 
       <div className={styles.productCarousel}>
@@ -148,11 +147,15 @@ export default function ProductCarousel() {
         ))}
       </div>
 
-      <button className={styles.nextBtn} onClick={nextPage}>
-        ›
+      <button
+        className={styles.nextBtn}
+        onClick={nextPage}
+        disabled={startIndex + productsPerPage >= products.length}
+        aria-label="Próximos produtos"
+      >
+        <ChevronRight size={24} strokeWidth={2.5} />
       </button>
 
-      {/* ===== MODAL ===== */}
       {modalProduct && (
         <div className={styles.modalOverlay} onClick={closeModal}>
           <div
