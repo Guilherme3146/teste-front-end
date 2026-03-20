@@ -1,0 +1,75 @@
+@import '../../styles/global';
+
+.banner {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  overflow: hidden;
+
+  .bannerImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+
+  .bannerContainer {
+    position: relative;
+    z-index: 2;
+    @include container;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+    text-align: left;
+    color: white;
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 500;
+
+      span {
+        // não quebrei linha com o <br> pois atrapalha no SEO porque a SERP fica quebrada por ser h1
+        display: block;
+        margin-top: -10px;
+      }
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      font-weight: 400;
+
+      span {
+        color: $yellow;
+        font-weight: 700;
+      }
+    }
+
+  }
+
+  .btn {
+    @include btn($yellow, #271C47);
+    text-transform: capitalize
+  }
+
+}
+
+@media (max-width: $breakpoint-ipad) {
+  .banner {
+    height: 300px;
+
+    .bannerContainer {
+      h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}

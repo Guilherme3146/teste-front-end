@@ -2,13 +2,13 @@ import "./styles/global.scss";
 
 import { Header } from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-import Newsletter from "./components/Newsletter/Newsletter";
+import Home from "./pages/Home/Home";
 
 function App() {
   return (
     <>
       <Header />
-      <Newsletter />
+      <Home />
       <Footer />
     </>
   );
