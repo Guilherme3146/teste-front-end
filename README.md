@@ -37,11 +37,17 @@ A solução foi pensada para ser simples, escalável e de fácil manutenção, s
 ## Estrutura do Projeto
 
 src/
+
 ├── assets/
+
 ├── components/
+
 ├── pages/
+
 ├── styles/
+
 ├── types/
+
 └── App.tsx
 
 
