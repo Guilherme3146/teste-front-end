@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { Product } from "../../types/product";
-import styles from './ProductCarousel.module.scss';
+import styles from './ProductCarrousel.module.scss';
 
 import { X } from 'lucide-react';
 import Counter from '../Counter/Counter';
